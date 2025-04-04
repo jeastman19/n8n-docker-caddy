@@ -1,21 +1,49 @@
 # n8n-docker-caddy
 
-Este proyecto es un fork del proyecto: forked from n8n-io/n8n-docker-caddy
+<img src="./images/n8n-logo.png" >
 
-Get up and running with n8n on the following platforms:
+<img src="./images/caddyserver.webp" width="430">
 
-- [DigitalOcean tutorial](https://docs.n8n.io/hosting/server-setups/digital-ocean/)
-- [Hetzner Cloud tutorial](https://docs.n8n.io/hosting/server-setups/hetzner/)
+---
 
-If you have questions after trying the tutorials, check out the [forums](https://community.n8n.io/).
+Este proyecto es derivado del proyecto [n8n-io/n8n-docker-caddy](https://github.com/n8n-io/n8n-docker-caddy)
 
-## Prerequisites
+## Contenido
 
-Self-hosting n8n requires technical knowledge, including:
+- [Uso](#uso)
+  - [Clonar el repositorio](#clonar-el-repositorio)
+  - [Crear variables de entorno](#crear-variables-de-entorno)
+  - [Crer el archivo caddy_config/Caddyfile](#crear-el-archivo-caddyfile)
+  - [Levantar los servicios](#levantar-los-servicios)
 
-- Setting up and configuring servers and containers
-- Managing application resources and scaling
-- Securing servers and applications
-- Configuring n8n
+### Uso
 
-n8n recommends self-hosting for expert users. Mistakes can lead to data loss, security issues, and downtime. If you aren't experienced at managing servers, n8n recommends [n8n Cloud](https://n8n.io/cloud/).
+#### Clonar el repositorio
+
+```sh
+git clone git@github.com:jeastman19/n8n-docker-caddy.git
+```
+
+#### Crear variables de entorno
+
+```sh
+cp env.example .env
+```
+
+##### Reemplazar los valores de las variables de entorno
+
+#### Crer el archivo caddy_config/Caddyfile
+
+Para crear este archivo, antes ya deben existir las variables de entorno adecuadamente configuradas.
+
+##### Ejecutar script que se encarga de crear el archivo
+
+```sh
+./config.sh
+```
+
+#### Levantar los servicios
+
+```sh
+docker compose up -d
+```
