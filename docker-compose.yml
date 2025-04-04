@@ -20,8 +20,8 @@ services:
     container_name: n8n
     image: docker.n8n.io/n8nio/n8n:1.85.4
     restart: always
-    expose:
-      - 5678
+    ports:
+      - 5678:5678
     environment:
       - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
