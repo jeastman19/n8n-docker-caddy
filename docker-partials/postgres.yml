@@ -2,7 +2,7 @@ services:
   postgres:
     container_name: postgres
     image: postgres:16-alpine
-    networks: ["demo"]
+    networks: ["n8n-network"]
     restart: unless-stopped
     ports:
       - 5432:5432
