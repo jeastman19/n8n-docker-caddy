@@ -19,6 +19,8 @@ volumes:
     external: true
   n8n_data:
     external: true
+  postgres_storage:
+    external: true
 
 networks:
   n8n-network:
