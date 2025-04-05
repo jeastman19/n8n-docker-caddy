@@ -1,0 +1,17 @@
+services:
+  caddy:
+    container_name: caddy
+    image: caddy:2.9.1
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy_data:/data
+      - ${DATA_FOLDER}/caddy_config:/config
+      - ${DATA_FOLDER}/caddy_config/Caddyfile:/etc/caddy/Caddyfile
+    networks:
+      - n8n-network
+    depends_on:
+      n8n:
+        condition: service_healthy

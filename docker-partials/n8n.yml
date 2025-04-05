@@ -1,0 +1,36 @@
+services:
+  n8n:
+      container_name: n8n
+      image: docker.n8n.io/n8nio/n8n:1.85.4
+      restart: always
+      expose:
+        - 5678
+      environment:
+        - DB_TYPE=${DB_TYPE}
+        - DB_POSTGRESDB_DATABASE=${DB_POSTGRESDB_DATABASE}
+        - DB_POSTGRESDB_HOST=${DB_POSTGRESDB_HOST}
+        - DB_POSTGRESDB_PORT=${DB_POSTGRESDB_PORT}
+        - DB_POSTGRESDB_USER=${DB_POSTGRESDB_USER}
+        - DB_POSTGRESDB_PASSWORD=${DB_POSTGRESDB_PASSWORD}
+        - DB_POSTGRESDB_SCHEMA=${DB_POSTGRESDB_SCHEMA}
+        - DB_POSTGRESDB_SSL=${DB_POSTGRESDB_SSL}
+        - DB_SSL_CA=${DB_SSL_CA}
+        - DB_SSL_CERT=${DB_SSL_CERT}
+        - DB_SSL_KEY=${DB_SSL_KEY}
+        - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
+        - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
+        - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+        - N8N_PORT=5678
+        - N8N_PROTOCOL=https
+        - NODE_ENV=production
+        - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
+      volumes:
+        - n8n_data:/home/node/.n8n
+        - ${DATA_FOLDER}/local_files:/files
+      networks:
+        - n8n-network
+      healthcheck:
+        test: ["CMD-SHELL", "pgrep node"]
+        interval: 30s
+        timeout: 5s
+        retries: 3
