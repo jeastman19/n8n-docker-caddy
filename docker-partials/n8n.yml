@@ -21,6 +21,7 @@ services:
         - QUEUE_BULL_REDIS_PASSWORD=${REDIS_PASSWORD}
         - QUEUE_BULL_REDIS_PORT=${REDIS_PORT}
         - WEBHOOK_URL=${WEBHOOK_URL}
+        - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false
       volumes:
         - n8n_data:/home/node/.n8n
         - ${DATA_FOLDER}/local_files:/files
