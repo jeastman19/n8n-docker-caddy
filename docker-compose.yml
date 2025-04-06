@@ -1,4 +1,14 @@
 services:
+  redis:
+    extends:
+      file: docker-partials/redis.yml
+      service: redis
+
+  redis-insight:
+    extends:
+      file: docker-partials/redis-insight.yml
+      service: redis-insight
+
   caddy:
     extends:
       file: docker-partials/caddy.yml
