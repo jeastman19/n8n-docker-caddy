@@ -26,9 +26,7 @@ services:
 
 volumes:
   caddy_data:
-    external: true
   n8n_data:
-    external: true
   postgres_storage:
   redis_storage:
 
