@@ -3,7 +3,7 @@ services:
     image: redis/redisinsight:latest
     container_name: redis-insight
     restart: unless-stopped
-    networks: ["demo"]
+    networks: ["n8n-network"]
     ports:
       - 5540:5540
     environment:

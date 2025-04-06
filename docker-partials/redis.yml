@@ -3,7 +3,7 @@ services:
     image: redis:alpine
     container_name: redis
     restart: unless-stopped
-    networks: ["demo"]
+    networks: ["n8n-network"]
     ports:
       - 6379:6379
     volumes:
