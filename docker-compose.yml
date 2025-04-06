@@ -30,6 +30,7 @@ volumes:
   n8n_data:
     external: true
   postgres_storage:
+  redis_storage:
 
 networks:
   n8n-network:
