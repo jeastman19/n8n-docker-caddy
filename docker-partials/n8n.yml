@@ -2,9 +2,7 @@ services:
   n8n:
       container_name: n8n
       image: docker.n8n.io/n8nio/n8n:latest
-      restart: always
-      expose:
-        - 5678
+      restart: unless-stopped
       environment:
         - DB_POSTGRESDB_DATABASE=${POSTGRES_DB}
         - DB_POSTGRESDB_HOST=${POSTGRES_HOST}
