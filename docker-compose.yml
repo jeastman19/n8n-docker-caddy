@@ -24,6 +24,11 @@ services:
       file: docker-partials/postgres.yml
       service: postgres
 
+  qdrant:
+    extends:
+      file: docker-partials/qdrant.yml
+      service: qdrant
+
 volumes:
   caddy_data:
   n8n_data:

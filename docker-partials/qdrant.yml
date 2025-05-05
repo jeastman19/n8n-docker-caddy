@@ -1,0 +1,10 @@
+service:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant
+    networks: ["n8n-network"]
+    restart: unless-stopped
+    ports:
+      - 6333:6333
+    volumes:
+      - qdrant_storage:/qdrant/storage
