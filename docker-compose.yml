@@ -34,6 +34,7 @@ volumes:
   n8n_data:
   postgres_storage:
   redis_storage:
+  qdrant_storage:
 
 networks:
   n8n-network:
