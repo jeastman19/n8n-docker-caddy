@@ -5,6 +5,8 @@ services:
     networks: ["n8n-network"]
     restart: unless-stopped
     ports:
-      - 6333:6333
+      - 6333:6333A
+    environment:
+      - QDRANT__SERVICE__API_KEY=${QDRANT__SERVICE__API_KEY}
     volumes:
       - qdrant_storage:/qdrant/storage
