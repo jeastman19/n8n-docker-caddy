@@ -1,37 +1,31 @@
 services:
   init-qdrant:
-    image: alpine:3.19           # contenedor liviano
+    image: curlimages/curl:8.8.0       # dispone de curl completo
     container_name: init-qdrant
     depends_on:
-      - qdrant                  # espera a que Qdrant arranque
+      - qdrant
     networks: ["n8n-network"]
     environment:
       - QDRANT_API_KEY=${QDRANT__SERVICE__API_KEY}
-      - QDRANT_HOST=${QDRANT_HOST}      # nombre del servicio interno
-    entrypoint: |
-      /bin/sh -c '
-      # --- Esperar a que Qdrant responda ---
-      echo "🔄 Esperando a Qdrant…"
-      until wget -qO- "$QDRANT_HOST/healthz"; do sleep 1; done
-      echo "✅ Qdrant está activo."
-
-      # --- Verificar si la colección ya existe ---
-      EXISTS=$(wget -qO- --header="api-key: $QDRANT__SERVICE__API_KEY" "$QDRANT_HOST/collections/faq" | grep -c "\"status\":\"ok\"")
-      if [ "$EXISTS" -eq 1 ]; then
-        echo "ℹ️  La colección faq ya existe. Nada que hacer."
-        exit 0
-      fi
-
-      # --- Crear la colección faq ---
-      echo "🚀 Creando colección faq (1536 dimensiones, distancia Dot)…"
-      wget -qO- --method=PUT \
-        --header="Content-Type: application/json" \
-        --header="api-key: $QDRANT__SERVICE__API_KEY" \
-        --body-data '\''{
-          "vectors": { "size": 1536, "distance": "Dot" }
-        }'\'' \
-        "$QDRANT_HOST/collections/faq"
-
-      echo "✅ Colección faq creada."
+      - QDRANT_HOST=http://qdrant:6333  # nombre del servicio interno
+    entrypoint: >
+      sh -c '
+        echo "🔄 Esperando a Qdrant…";
+        until curl -sf "$QDRANT_HOST/healthz"; do sleep 1; done;
+        echo "✅ Qdrant está activo.";
+        
+        if curl -s -H "api-key: $QDRANT_API_KEY" \
+               "$QDRANT_HOST/collections/faq" \
+               | grep -q "\"status\":\"ok\""; then
+          echo "ℹ️  La colección faq ya existe. Nada que hacer.";
+          exit 0;
+        fi;
+        
+        echo "🚀 Creando colección faq (1536 dimensiones, distancia Dot)…";
+        curl -s -X PUT "$QDRANT_HOST/collections/faq" \
+             -H "Content-Type: application/json" \
+             -H "api-key: $QDRANT_API_KEY" \
+             -d "{\"vectors\": {\"size\": 1536, \"distance\": \"Dot\"}}";
+        echo "✅ Colección faq creada.";
       '
-    restart: "no"               # se ejecuta una sola vez y termina
+    restart: "no"    # solo se ejecuta una vez
