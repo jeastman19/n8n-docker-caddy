@@ -7,7 +7,7 @@ services:
     networks: ["n8n-network"]
     environment:
       - QDRANT_API_KEY=${QDRANT__SERVICE__API_KEY}
-      - QDRANT_HOST=http://qdrant:6333      # nombre del servicio interno
+      - QDRANT_HOST=${QDRANT_HOST}      # nombre del servicio interno
     entrypoint: |
       /bin/sh -c '
       # --- Esperar a que Qdrant responda ---
@@ -16,7 +16,7 @@ services:
       echo "✅ Qdrant está activo."
 
       # --- Verificar si la colección ya existe ---
-      EXISTS=$(wget -qO- --header="api-key: $QDRANT_API_KEY" "$QDRANT_HOST/collections/faq" | grep -c "\"status\":\"ok\"")
+      EXISTS=$(wget -qO- --header="api-key: $QDRANT__SERVICE__API_KEY" "$QDRANT_HOST/collections/faq" | grep -c "\"status\":\"ok\"")
       if [ "$EXISTS" -eq 1 ]; then
         echo "ℹ️  La colección faq ya existe. Nada que hacer."
         exit 0
@@ -26,7 +26,7 @@ services:
       echo "🚀 Creando colección faq (1536 dimensiones, distancia Dot)…"
       wget -qO- --method=PUT \
         --header="Content-Type: application/json" \
-        --header="api-key: $QDRANT_API_KEY" \
+        --header="api-key: $QDRANT__SERVICE__API_KEY" \
         --body-data '\''{
           "vectors": { "size": 1536, "distance": "Dot" }
         }'\'' \
