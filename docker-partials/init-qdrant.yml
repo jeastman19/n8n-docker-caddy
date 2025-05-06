@@ -14,7 +14,7 @@ services:
         until curl -sf "$QDRANT_HOST/healthz"; do sleep 1; done;
         echo "✅ Qdrant está activo.";
         
-        if curl -s -H "api-key: $QDRANT_API_KEY" \
+        if curl -s -H "api-key: $QDRANT__SERVICE__API_KEY" \
                "$QDRANT_HOST/collections/faq" \
                | grep -q "\"status\":\"ok\""; then
           echo "ℹ️  La colección faq ya existe. Nada que hacer.";
@@ -24,7 +24,7 @@ services:
         echo "🚀 Creando colección faq (1536 dimensiones, distancia Dot)…";
         curl -s -X PUT "$QDRANT_HOST/collections/faq" \
              -H "Content-Type: application/json" \
-             -H "api-key: $QDRANT_API_KEY" \
+             -H "api-key: $QDRANT__SERVICE__API_KEY" \
              -d "{\"vectors\": {\"size\": 1536, \"distance\": \"Dot\"}}";
         echo "✅ Colección faq creada.";
       '
