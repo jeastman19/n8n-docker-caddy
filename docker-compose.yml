@@ -29,6 +29,11 @@ services:
       file: docker-partials/qdrant.yml
       service: qdrant
 
+  init-qdrant:
+    extends:
+      file: docker-partials/init-qdrant.yml
+      service: init-qdrant
+
 volumes:
   caddy_data:
   n8n_data:
