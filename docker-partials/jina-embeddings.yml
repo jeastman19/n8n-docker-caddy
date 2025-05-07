@@ -8,4 +8,4 @@ services:
     ports:
       - "8500:8500"
     networks:
-      - embedding_network
+      - n8n-network
