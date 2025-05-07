@@ -8,5 +8,15 @@ services:
       - "8000:8000"
     environment:
       - OLLAMA_API_KEY=${OLLAMA_API_KEY}
+    entrypoint:
+      - /bin/bash
+      - -c
+      - |
+        if ! ollama list | grep -q "qwen2.5:7b-instruct-q4_K_M"; then
+          echo "Modelo Qwen2.5:7b-instruct-q4_K_M no encontrado. Descargando..."
+          ollama pull qwen2.5:7b-instruct-q4_K_M
+        fi
+        echo "Iniciando Ollama..."
+        ollama serve --host 0.0.0.0 --port 8000
     volumes:
       - ollama_data:/data

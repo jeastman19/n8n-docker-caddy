@@ -34,11 +34,6 @@ services:
       file: docker-partials/ollama.yml
       service: ollama
 
-  jina-embeddings:
-    extends:
-      file: docker-partials/jina-embeddings.yml
-      service: jina-embeddings
-
 volumes:
   caddy_data:
   n8n_data:
