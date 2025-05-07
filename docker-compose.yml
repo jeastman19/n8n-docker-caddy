@@ -29,15 +29,9 @@ services:
       file: docker-partials/qdrant.yml
       service: qdrant
 
-  ollama:
-    extends:
-      file: docker-partials/ollama.yml
-      service: ollama
-
 volumes:
   caddy_data:
   n8n_data:
-  ollama_data:
   postgres_storage:
   qdrant_storage:
   redis_storage:
