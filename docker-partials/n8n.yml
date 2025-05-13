@@ -6,7 +6,7 @@ services:
       expose:
         - 5678
       env_file:
-        - .env
+        - ../.env
       environment:
         - DB_POSTGRESDB_DATABASE=${POSTGRES_DB}
         - DB_POSTGRESDB_HOST=${POSTGRES_HOST}
