@@ -23,6 +23,9 @@ services:
         - TZ=${TZ}
         - WEBHOOK_URL=${WEBHOOK_URL}
         - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false
+        - N8N_LOG_LEVEL=debug
+        - EXECUTIONS_PROCESS=main
+        - N8N_PAYLOAD_SIZE_MAX=64MB
       volumes:
         - n8n_data:/home/node/.n8n
         - ${DATA_FOLDER}/local_files:/files
