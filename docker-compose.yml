@@ -18,6 +18,10 @@ services:
     extends:
       file: docker-partials/n8n-main.yml
       service: n8n-main
+    networks:
+      n8n-network:
+        aliases:
+          - n8n
 
   n8n-worker:
     extends:
