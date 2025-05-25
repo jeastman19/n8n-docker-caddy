@@ -2,15 +2,27 @@ services:
   n8n-worker:
     image: docker.n8n.io/n8nio/n8n:latest
     restart: always
-    depends_on: [redis, postgres]
+    depends_on:
+      - redis
+      - postgres
     environment:
+      # --- cola ---
       - EXECUTIONS_MODE=queue
       - QUEUE_BULL_REDIS_HOST=${REDIS_HOST}
       - QUEUE_BULL_REDIS_PASSWORD=${REDIS_PASSWORD}
       - QUEUE_BULL_REDIS_PORT=${REDIS_PORT}
-      - N8N_DISABLE_UI="true"
-      - N8N_DISABLE_PRODUCTION_MAIN_PROCESS="true"
-      - N8N_DIAGNOSTICS_ENABLED="false"
+      # --- sin UI ---
+      - N8N_DISABLE_UI=true
+      - N8N_DISABLE_PRODUCTION_MAIN_PROCESS=true
+      # --- otros ---
+      - N8N_DIAGNOSTICS_ENABLED=false
       - TZ=${TZ}
+      # opcional: controla concurrencia por worker
+      # - N8N_WORKER_CONCURRENCY=5
     networks:
       - n8n-network
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep node"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
