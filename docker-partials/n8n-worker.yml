@@ -34,6 +34,9 @@ services:
       - EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS=false
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 
+      - QUEUE_BULL_REDIS_DB=0
+      - QUEUE_BULL_REDIS_PREFIX=bull
+
     networks:
       - n8n-network
     healthcheck:

@@ -44,6 +44,8 @@ services:
       - EXECUTIONS_DATA_PRUNE=true
       - EXECUTIONS_DATA_MAX_AGE=90      # días
       - N8N_DEFAULT_BINARY_DATA_MODE=filesystem
+
+      - QUEUE_BULL_REDIS_PREFIX=bull
     volumes:
       - n8n_data:/home/node/.n8n
       - ${DATA_FOLDER}/local_files:/files
