@@ -14,21 +14,10 @@ services:
       file: docker-partials/caddy.yml
       service: caddy
 
-  n8n-main:
+  n8n:
     extends:
-      file: docker-partials/n8n-main.yml
-      service: n8n-main
-    networks:
-      n8n-network:
-        aliases:
-          - n8n
-
-  n8n-worker:
-    extends:
-      file: docker-partials/n8n-worker.yml
-      service: n8n-worker
-    deploy:
-      replicas: 3
+      file: docker-partials/n8n.yml
+      service: n8n
 
   postgres:
     extends:
