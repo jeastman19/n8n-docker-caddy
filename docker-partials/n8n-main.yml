@@ -35,7 +35,7 @@ services:
       - WEBHOOK_URL=${WEBHOOK_URL}
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false
       - N8N_LOG_LEVEL=debug
-      - N8N_PAYLOAD_SIZE_MAX=64m
+      - N8N_PAYLOAD_SIZE_MAX=64
       - NODE_OPTIONS=--max_old_space_size=3072
 
       # --- housekeeping ---
