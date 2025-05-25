@@ -1,5 +1,5 @@
 services:
-  n8n:
+  n8n-main:
       container_name: n8n
       image: docker.n8n.io/n8nio/n8n:latest
       restart: always
@@ -24,8 +24,14 @@ services:
         - WEBHOOK_URL=${WEBHOOK_URL}
         - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false
         - N8N_LOG_LEVEL=debug
-        - EXECUTIONS_PROCESS=main
-        - N8N_PAYLOAD_SIZE_MAX=64MB
+        - N8N_PAYLOAD_SIZE_MAX=64m
+        - NODE_OPTIONS=--max_old_space_size=3072
+        - EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS=none
+        - EXECUTIONS_DATA_SAVE_ON_SUCCESS=false
+        - N8N_DEFAULT_BINARY_DATA_MODE=filesystem
+        - EXECUTIONS_MODE=queue
+        - OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS="true"
+        - QUEUE_HEALTH_CHECK_ACTIVE="true"
       volumes:
         - n8n_data:/home/node/.n8n
         - ${DATA_FOLDER}/local_files:/files
