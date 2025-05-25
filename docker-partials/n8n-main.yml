@@ -39,8 +39,8 @@ services:
       - NODE_OPTIONS=--max_old_space_size=3072
 
       # --- housekeeping ---
-      - EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS=none
-      - EXECUTIONS_DATA_SAVE_ON_SUCCESS=false
+      - EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS=false
+      - EXECUTIONS_DATA_SAVE_ON_SUCCESS=none
       - EXECUTIONS_DATA_PRUNE=true
       - EXECUTIONS_DATA_MAX_AGE=90      # días
       - N8N_DEFAULT_BINARY_DATA_MODE=filesystem
