@@ -12,6 +12,9 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
     volumes:
       - postgres_storage:/var/lib/postgresql/data
+      - ./postgresql.conf:/tmp/postgresql.conf
+    command: >
+      bash -c "cp /tmp/postgresql.conf /var/lib/postgresql/data/postgresql.conf && docker-entrypoint.sh postgres"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 5s
