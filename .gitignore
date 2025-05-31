@@ -1,5 +1,6 @@
 .env
 ca-certificate.crt
 caddy_config/Caddyfile
+config.json
 
 *.zip

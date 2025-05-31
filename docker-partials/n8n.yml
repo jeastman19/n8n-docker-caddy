@@ -30,6 +30,7 @@ services:
         - n8n_data:/home/node/.n8n
         - ${DATA_FOLDER}/local_files:/files
         - ../.env:/files/.env
+        - ../config.json:/files/config.json:ro
       networks:
         - n8n-network
       healthcheck:

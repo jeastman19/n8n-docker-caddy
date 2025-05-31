@@ -1,0 +1,29 @@
+{
+  "Dikigo": {
+    "correoObjetivo": "hola@dikigo.com",
+    "credencialGmail": "Dikigo",
+    "coleccionQdrant": "links",
+    "destinoLog": "ambos",
+    "maxEmailsToFetch": 60,
+    "extraerLinks": true,
+    "marcarComoLeido": false
+  },
+  "Infracciones": {
+    "correoObjetivo": "infraccionesar@gmail.com",
+    "credencialGmail": "Infracciones",
+    "coleccionQdrant": "links",
+    "destinoLog": "postgres",
+    "maxEmailsToFetch": 40,
+    "extraerLinks": true,
+    "marcarComoLeido": false
+  },
+  "Informes": {
+    "correoObjetivo": "contacto@informe.com.ar",
+    "credencialGmail": "Informes",
+    "coleccionQdrant": "links",
+    "destinoLog": "googleSheets",
+    "maxEmailsToFetch": 30,
+    "extraerLinks": true,
+    "marcarComoLeido": false
+  }
+}
