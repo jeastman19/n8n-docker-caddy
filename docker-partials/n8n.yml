@@ -27,6 +27,7 @@ services:
       - ../data/n8n:/home/node/.n8n
       - ../data/local_files:/files
       - ../config/config.json:/files/config.json:ro
+      - ../config/do_ca.crt:/etc/ssl/certs/do_ca.crt:ro
     networks:
       - n8n-network
     healthcheck:

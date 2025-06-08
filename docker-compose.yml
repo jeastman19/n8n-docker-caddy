@@ -4,8 +4,6 @@ services:
       file: docker-partials/n8n.yml
       service: n8n
     env_file: .env
-    volumes:
-      - ./config/do_ca.crt:/etc/ssl/certs/do_ca.crt:ro
 
 
   caddy:
