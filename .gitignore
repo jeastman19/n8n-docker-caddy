@@ -1,6 +1,15 @@
 .env
 ca-certificate.crt
-caddy_config/Caddyfile
+
 config.json
 
 *.zip
+
+config/caddy/Caddyfile
+
+
+#########################
+# Volumenes
+#########################
+data/
+config/
