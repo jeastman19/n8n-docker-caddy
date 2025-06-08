@@ -12,8 +12,8 @@ if [ -z "$DOMAIN_NAME" ] || [ -z "$SUBDOMAIN" ]; then
     exit 1
 fi
 
-input_file="caddy_config/Caddyfile.example"
-output_file="caddy_config/Caddyfile"
+input_file="config/caddy/Caddyfile.example"
+output_file="config/caddy/Caddyfile"
 
 sed "s/n8n\.<domain>\.<suffix>/$SUBDOMAIN.$DOMAIN_NAME/" "$input_file" > "$output_file"
 
