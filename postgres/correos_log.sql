@@ -4,14 +4,14 @@ CREATE TABLE IF NOT EXISTS correos_log (
   from_address TEXT,
   to_address TEXT,
   subject TEXT,
-  fecha TEXT,
-  hora TEXT,
+  received_at TIMESTAMP,
   raw_text TEXT,
   body_clean TEXT,
   clasificacion TEXT,
   existe BOOLEAN,
-  respuesta TEXT,
-  docLink TEXT,
+  respuesta BOOLEAN,
+  doc_link TEXT,
   point_id INTEGER,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

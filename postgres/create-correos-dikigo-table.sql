@@ -1,8 +1,8 @@
 CREATE TABLE if not exists correos_dikigo (
     email_id            VARCHAR(100) PRIMARY KEY,
     fecha_hora          TIMESTAMP,
-    from_email          VARCHAR(50),
-    subject             TEXT,
+    from_email          TEXT,
+    "subject"           TEXT,
     body_raw            TEXT,
     body_clean          TEXT,
     intent_extraido     TEXT,
@@ -15,10 +15,10 @@ CREATE TABLE if not exists correos_dikigo (
     respuesta_correcta  TEXT,
     tipo_error          TEXT,
     notas               TEXT,
-    pregunta			VARCHAR(2),
-    encontrado          VARCHAR(2),
-	procesado			VARCHAR(2),
-    correcto            VARCHAR(2)
+    pregunta            BOOLEAN,
+    encontrado          BOOLEAN,
+	procesado           BOOLEAN,
+    correcto            BOOLEAN
 );
 
 CREATE INDEX IF NOT EXISTS idx_correos_dikigo_fecha_hora ON correos_dikigo(fecha_hora);
