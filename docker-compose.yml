@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   n8n:
@@ -6,42 +6,12 @@ services:
       file: docker-partials/n8n.yml
       service: n8n
     env_file: .env
-    environment:
-      - DB_TYPE=${DB_TYPE}
-      - DB_POSTGRESDB_HOST=${POSTGRES_HOST}
-      - DB_POSTGRESDB_PORT=${POSTGRES_PORT}
-      - DB_POSTGRESDB_DATABASE=${POSTGRES_DB}
-      - DB_POSTGRESDB_USER=${POSTGRES_USER}
-      - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
-      - QUEUE_MODE=redis
-      - QUEUE_REDIS_HOST=${REDIS_HOST}
-      - QUEUE_REDIS_PORT=${REDIS_PORT}
-      - QUEUE_REDIS_PASSWORD=${REDIS_PASSWORD}
-      - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
-      - N8N_PORT=${N8N_PORT}
-      - N8N_PROTOCOL=${N8N_PROTOCOL}
-      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
-      - N8N_USER_MANAGEMENT_JWT_SECRET=${N8N_USER_MANAGEMENT_JWT_SECRET}
-      - WEBHOOK_URL=${WEBHOOK_URL}
-      - TZ=${GENERIC_TIMEZONE}
-    volumes:
-      - ./data/n8n:/home/node/.n8n
-      - ./data/local_files:/files
-      - ./config/config.json:/files/config.json:ro
-    networks:
-      - n8n-network
 
   caddy:
     extends:
       file: docker-partials/caddy.yml
       service: caddy
     env_file: .env
-    volumes:
-      - ./data/caddy/data:/data
-      - ./data/caddy/config:/config
-      - ./config/caddy/Caddyfile:/etc/caddy/Caddyfile
-    networks:
-      - n8n-network
     depends_on:
       n8n:
         condition: service_healthy
@@ -51,10 +21,6 @@ services:
       file: docker-partials/qdrant.yml
       service: qdrant
     env_file: .env
-    environment:
-      - QDRANT__SERVICE__API_KEY=${QDRANT__SERVICE__API_KEY}
-    volumes:
-      - ./data/qdrant:/qdrant/storage
 
 volumes:
   caddy_data:
